@@ -39,18 +39,25 @@ And make sure that the `REACTOR_UC_PATH` environment variable is pointing to it.
 
 ## 2. Build Your Project
 
+By default, in this template, the build compiles `src/HelloPosix.ulf` when you issue the following commands:
+
 ```bash
 mkdir build && cd build
 cmake ..
 make
 ```
 
-Or using CMake presets:
+Alternatively, use CMake presets:
 
 ```bash
 cmake --preset release
 cmake --build --preset release
 ```
+
+The first command generates code without compiling it.
+The second command generates code and compiles it, creating the binary executable `build/HelloPosix`.
+
+In VSCode or Cursor, the Build command (`CMake Build`) will generate code and compile it. `CMake Configure` will generate code without compiling it.
 
 ## 3. Run Your Application
 
@@ -75,4 +82,6 @@ ulf-posix-template/
 To add a new micro-LF program:
 
 1. Create a new `.ulf` file under `src/`;
-1. Build it with `cmake -Bbuild -DLF_MAIN=<YourProgram> && cmake --build build`.
+1. Build it with `cmake -Bbuild -DLF_MAIN=<YourProgram> && cmake --build build`
+
+This will create an executable `build/<YourProgram>`.

@@ -9,7 +9,7 @@ main reactor {
 
   reaction(t1) {=
     interval_t logical_time = env->get_elapsed_logical_time(env);
-    interval_t physical_time = env->get_physical_time(env);
+    interval_t physical_time = env->get_elapsed_physical_time(env);
     printf("Elapsed lt=%lld and pt=%lld with lag=%lld\n", logical_time, physical_time, physical_time - logical_time);
   =}
 }
