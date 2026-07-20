@@ -85,3 +85,12 @@ To add a new micro-LF program:
 1. Build it with `cmake -Bbuild -DLF_MAIN=<YourProgram> && cmake --build build`
 
 This will create an executable `build/<YourProgram>`.
+
+## Formatting
+
+To get compliant code formatting, install and run:
+
+```
+pip install cmakelang==0.6.13
+cmake-format -i CMakeLists.txt
+```
