@@ -1,0 +1,6 @@
+src-gen/
+build/
+build-*/
+.vscode/
+.idea
+CMakeUserPresets.json

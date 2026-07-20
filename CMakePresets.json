@@ -1,0 +1,42 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "release",
+            "displayName": "POSIX Release",
+            "description": "Build for POSIX platform in release mode",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "debug",
+            "displayName": "POSIX Debug",
+            "description": "Build for POSIX platform with debug symbols",
+            "binaryDir": "${sourceDir}/build-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "displayName": "Build Release",
+            "description": "Build the project in Release mode"
+        },
+        {
+            "name": "debug",
+            "configurePreset": "debug",
+            "displayName": "Build Debug",
+            "description": "Build the project in Debug mode"
+        }
+    ]
+}
