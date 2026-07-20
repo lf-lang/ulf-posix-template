@@ -94,3 +94,9 @@ To get compliant code formatting, install and run:
 pip install cmakelang==0.6.13
 cmake-format -i CMakeLists.txt
 ```
+
+# Utilities
+
+This template includes some useful utility functions together with examples showing how to use them:
+
+* [initialize_from_file](util/initialize_from_file.h): A collection of C functions for initializing parameters, state variables, and local variables from a file, typically a CSV file. This is particularly useful for banks of reactors. An example is given in [BankInitialization.ulf](src/BankInitialization.ulf), which reads value from the file [BankInitializationParams.csv](src/BankInitializationParams.csv).
