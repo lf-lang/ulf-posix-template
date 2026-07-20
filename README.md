@@ -2,7 +2,7 @@
 
 ![Header](https://micro-lf.org/assets/header/posix.svg)
 
-- **Documentation:** <https://micro-lf.org>
+- **micro-LF documentation:** <https://micro-lf.org>
 
 ______________________________________________________________________
 
