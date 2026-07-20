@@ -11,9 +11,6 @@
 
 #include <stddef.h> // Defines size_t
 
-#define SC_CSV_LINE_MAX 256
-#define SC_CSV_MAX_COLS 256
-
 /**
  * @brief Read one delimited row from a file and parse as doubles.
  *

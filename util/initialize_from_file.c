@@ -8,6 +8,9 @@
 
 #include "initialize_from_file.h"
 
+#define SC_CSV_LINE_MAX 256
+#define SC_CSV_MAX_COLS 256
+
 typedef enum { LF_TYPE_DOUBLE, LF_TYPE_INT, LF_TYPE_STRING } lf_field_type;
 
 /** Remove leading and trailing whitespace from the string. */
