@@ -1,0 +1,84 @@
+# Pre-commit hooks for ulf-posix-template
+# See https://pre-commit.com for more information
+
+repos:
+  # General file checks
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-yaml
+    args: [--allow-multiple-documents]
+  - id: check-added-large-files
+    args: [--maxkb=500]
+  - id: check-merge-conflict
+  - id: check-case-conflict
+  - id: mixed-line-ending
+    args: [--fix=lf]
+  - id: check-executables-have-shebangs
+  - id: check-shebang-scripts-are-executable
+
+  # Shell script linting
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.11.0.1
+  hooks:
+  - id: shellcheck
+    args: [--severity=warning]
+
+  # Markdown formatting
+- repo: https://github.com/executablebooks/mdformat
+  rev: 0.7.22
+  hooks:
+  - id: mdformat
+    additional_dependencies:
+    - mdformat-gfm
+    - mdformat-tables
+
+  # CMake formatting
+- repo: https://github.com/cheshirekow/cmake-format-precommit
+  rev: v0.6.13
+  hooks:
+  - id: cmake-format
+    args: [--in-place]
+  - id: cmake-lint
+    args: [--disabled-codes, C0103]
+
+  # C/C++ formatting with clang-format
+- repo: https://github.com/pre-commit/mirrors-clang-format
+  rev: v21.1.6
+  hooks:
+  - id: clang-format
+    types_or: [c, c++]
+
+  # YAML formatting
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.15.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix, --indent, '2']
+
+  # Nix formatting
+- repo: https://github.com/nix-community/nixpkgs-fmt
+  rev: v1.3.0
+  hooks:
+  - id: nixpkgs-fmt
+
+  # Check for common spelling mistakes
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.2.6
+  hooks:
+  - id: codespell
+    args: ['--ignore-words-list=crate,nd,ser,te', '--skip=*.json,*.lock,src-gen/**,build/**']
+
+# Global file exclusions
+exclude: |
+  (?x)^(
+    .clang-tidy$|
+    .clang-format$|
+    src-gen/.*|
+    build/.*|
+    \.git/.*|
+    .*\.o$|
+    .*\.a$
+  )$
