@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdarg.h>
+#include <errno.h>
+#include <limits.h>
 
 #include "initialize_from_file.h"
 
@@ -97,8 +99,9 @@ static int lf_initialize_fields(const char* filename, char delimiter, size_t row
             break;
           pointer_count++;
           char* end = NULL;
+          errno = 0;
           long parsed = strtol(fields[i], &end, 10);
-          if (end != fields[i] && *end == '\0') {
+          if (end != fields[i] && *end == '\0' && errno == 0 && parsed >= INT_MIN && parsed <= INT_MAX) {
             *out = (int)parsed;
           } else {
             fprintf(stderr, "ERROR: Failed to parse integer value \"%s\" at row %zu, column %zu in \"%s\".\n",
