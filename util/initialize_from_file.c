@@ -40,7 +40,7 @@ static int sc_csv_split(char* line, char delimiter, char** fields, int max_field
 }
 
 /**
- * Shared implementation for lf_initialize_double, lf_initialize_int, and _lf_initialize_string.
+ * Shared implementation for lf_initialize_double, lf_initialize_int, and lf_initialize_string.
  * The `type` parameter selects the expected va_arg pointer type (double*, int*, or char**).
  */
 static int lf_initialize_fields(const char* filename, char delimiter, size_t row_number, lf_field_type type,
