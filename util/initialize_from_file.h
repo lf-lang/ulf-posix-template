@@ -102,7 +102,7 @@ int lf_initialize_int(const char* filename, char delimiter, size_t row_number, .
  * This will read the third row of the file "x.csv" (row numbers start from 0)
  * and parse the values into the variables `a` and `b`.
  * 
- * Memory for each string is allocated with `malloc`. It is the responsibility
+ * Memory for each string is allocated with `calloc`. It is the responsibility
  * of the caller to free the strings after use. If the strings set the values of state
  * variables, then the reactor should free the strings in a reaction to `shutdown`.
  * If the strings are sent to other reactors, then those other reactors are
