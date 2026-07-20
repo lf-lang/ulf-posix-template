@@ -96,9 +96,9 @@ int lf_initialize_int(const char* filename, char delimiter, size_t row_number, .
  * terminated with NULL.
  * Example:
  * ```
- *   char* a, b;
- *   int count = lf_initialize_double("x.csv", ',', 2, &a, &b, NULL);
- * ```
+ *   char* a;
+ *   char* b;
+ *   int count = lf_initialize_string("x.csv", ',', 2, &a, &b, NULL);
  * This will read the third row of the file "x.csv" (row numbers start from 0)
  * and parse the values into the variables `a` and `b`.
  * 
