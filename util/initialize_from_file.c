@@ -119,8 +119,8 @@ static int lf_initialize_fields(const char* filename, char delimiter, size_t row
           pointer_count++;
           char* field = fields[i];
           size_t field_len = strlen(field);
-          if (field_len >= 2 &&
-              ((field[0] == '"' && field[field_len - 1] == '"') || (field[0] == '\'' && field[field_len - 1] == '\''))) {
+          if (field_len >= 2 && ((field[0] == '"' && field[field_len - 1] == '"') ||
+                                 (field[0] == '\'' && field[field_len - 1] == '\''))) {
             field++;
             field_len -= 2;
           }

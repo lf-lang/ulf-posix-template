@@ -86,7 +86,7 @@ int lf_initialize_int(const char* filename, char delimiter, size_t row_number, .
 
 /**
  * @brief Read one delimited row from a file and parse as strings.
- * 
+ *
  * Given a file path (either absolute or relative to the current working directory),
  * this function reads the specified row, which it assumes is a list of strings separated by a delimiter,
  * and parses the values into a list of specified variables given as a list of char** pointers
@@ -98,7 +98,7 @@ int lf_initialize_int(const char* filename, char delimiter, size_t row_number, .
  *   int count = lf_initialize_string("x.csv", ',', 2, &a, &b, NULL);
  * This will read the third row of the file "x.csv" (row numbers start from 0)
  * and parse the values into the variables `a` and `b`.
- * 
+ *
  * Memory for each string is allocated with `calloc`. It is the responsibility
  * of the caller to free the strings after use. If the strings set the values of state
  * variables, then the reactor should free the strings in a reaction to `shutdown`.
