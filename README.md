@@ -73,8 +73,9 @@ ulf-posix-template/
 ├── CMakePresets.json      # CMake preset configurations
 ├── README.md              # This file
 └── src/                   # micro-LF source files
-    ├── HelloPosix.ulf     # Hello world example
-    └── Timer.ulf          # Timer example
+    ├── HelloPosix.ulf        # Hello world example
+    ├── Timer.ulf             # Timer example
+    └── FederatedConnection.ulf  # Federated example
 ```
 
 ## Adding New Examples
@@ -86,7 +87,42 @@ To add a new micro-LF program:
 
 This will create an executable `build/<YourProgram>`.
 
-## Formatting
+## 4. Federated Programs
+
+A federated program consists of multiple federates that execute as separate
+processes and communicate over the network. Each federate is built
+and run independently. The `FederatedConnection.ulf` example defines two
+federates, `r1` and `r2`, that exchange messages.
+
+### 4.1. Build
+
+Use `-DFEDERATE=<federate>` to select which federate to compile. Build each
+federate separately, using a distinct build directory to avoid stale artifacts:
+
+```bash
+cmake -Bbuild -DLF_MAIN=FederatedConnection -DFEDERATE=r1
+cmake --build build
+
+cmake -Bbuild -DLF_MAIN=FederatedConnection -DFEDERATE=r2
+cmake --build build
+```
+
+This produces two executables: `build/FederatedConnection_r1` and
+`build/FederatedConnection_r2`.
+
+### 4.2. Run
+
+Launch each federate in its own terminal so they can communicate:
+
+```bash
+# Terminal 1
+./build/FederatedConnection_r1
+
+# Terminal 2
+./build/FederatedConnection_r2
+```
+
+## 5. Formatting
 
 To get compliant code formatting, install and run:
 

@@ -25,8 +25,17 @@ endif()
 # micro-LF Configuration
 # ============================================================================
 
-set(LF_MAIN_TARGET ${LF_MAIN})
+if(NOT DEFINED FEDERATE)
+  set(LF_MAIN_TARGET ${LF_MAIN})
+else()
+  set(LF_MAIN_TARGET ${LF_MAIN}_${FEDERATE})
+endif()
 add_executable(${LF_MAIN_TARGET})
+
+if(${LF_MAIN_TARGET} EQUAL "MyMujocoFed")
+  find_package(mujoco 2.3.7 REQUIRED PATHS ${MUJOCO_FOLDER} NO_DEFAULT_PATH)
+  target_link_libraries(${LF_MAIN_TARGET} PUBLIC mujoco::mujoco)
+endif()
 
 # Check for Reactor-UC path
 if(NOT DEFINED ENV{REACTOR_UC_PATH})
@@ -40,5 +49,12 @@ include($ENV{REACTOR_UC_PATH}/cmake/ulfc.cmake)
 lf_setup()
 lf_run_lfc(OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ FILES
            ${CMAKE_CURRENT_SOURCE_DIR}/src/${LF_MAIN}.ulf)
-lf_build_generated_code(${LF_MAIN_TARGET}
-                        ${CMAKE_CURRENT_SOURCE_DIR}/src-gen/${LF_MAIN})
+
+if(NOT DEFINED FEDERATE)
+  lf_build_generated_code(${LF_MAIN_TARGET}
+                          ${CMAKE_CURRENT_SOURCE_DIR}/src-gen/${LF_MAIN})
+else()
+  lf_build_generated_code(
+    ${LF_MAIN_TARGET}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src-gen/${LF_MAIN}/${FEDERATE})
+endif()
