@@ -126,7 +126,27 @@ Launch each federate in its own terminal so they can communicate:
 
 To get compliant code formatting, install and run:
 
+```bash
+pip install pre-commit
+pre-commit run --all-files
 ```
-pip install cmakelang==0.6.13
-cmake-format -i CMakeLists.txt
+
+## Utilities
+
+This template includes some useful utility functions together with examples showing how to use them:
+
+- [initialize_from_file](util/initialize_from_file.h): A collection of C functions for initializing parameters, state variables, and local variables from a file, typically a CSV file. This is particularly useful for banks of reactors. An example is given in [BankInitialization.ulf](src/BankInitialization.ulf), which reads values from the file [BankInitializationParams.csv](src/BankInitializationParams.csv). Compile and run this as follows:
+
+```bash
+cmake -Bbuild -DLF_MAIN=BankInitialization && cmake --build build
+build/BankInitialization
+```
+
+- [MuJoCo](https://mujoco.org): A physics-based simulator. This is not tested yet, but if you have a federated program where one of the federates uses MuJoCo, something like the following should work the CMakeLists.txt file:
+
+```cmake
+if(${LF_MAIN_TARGET} EQUAL "MyMujocoFed")
+  find_package(mujoco 2.3.7 REQUIRED PATHS ${MUJOCO_FOLDER} NO_DEFAULT_PATH)
+  target_link_libraries(${LF_MAIN_TARGET} PUBLIC mujoco::mujoco)
+endif()
 ```

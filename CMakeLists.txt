@@ -49,7 +49,7 @@ include($ENV{REACTOR_UC_PATH}/cmake/ulfc.cmake)
 lf_setup()
 lf_run_lfc(OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ FILES
            ${CMAKE_CURRENT_SOURCE_DIR}/src/${LF_MAIN}.ulf)
-
+# Build the generated code
 if(NOT DEFINED FEDERATE)
   lf_build_generated_code(${LF_MAIN_TARGET}
                           ${CMAKE_CURRENT_SOURCE_DIR}/src-gen/${LF_MAIN})
@@ -57,4 +57,9 @@ else()
   lf_build_generated_code(
     ${LF_MAIN_TARGET}
     ${CMAKE_CURRENT_SOURCE_DIR}/src-gen/${LF_MAIN}/${FEDERATE})
+endif()
+
+# Utilities used by specific examples (micro-LF has no per-file cmake-include)
+if(LF_MAIN STREQUAL "BankInitialization")
+  include(${CMAKE_CURRENT_SOURCE_DIR}/util/initialize_from_file.cmake)
 endif()
